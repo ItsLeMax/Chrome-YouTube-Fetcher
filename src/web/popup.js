@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         song.textContent = response.song?.title || "//";
         author.textContent = response.song?.author || "//";
-        thumbnail.src = response.song?.thumbnail || null;
+        thumbnail.src = response.song?.thumbnail || "";
 
     });
 
