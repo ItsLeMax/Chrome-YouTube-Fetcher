@@ -1,20 +1,5 @@
 let lastSong;
 
-/**
- * @description Injects content.js into a tab
- * @author ItsLeMax
- * @param { Number|String } tabId Tab id of the browsers tab
- * @since 1.0.0 
- */
-function injectContentScript(tabId) {
-
-    chrome.scripting.executeScript({
-        target: { tabId: tabId },
-        files: ["main/content.js"]
-    });
-
-}
-
 chrome.runtime.onMessage.addListener((message) => {
 
     if (message.type != "SONG_UPDATE")
@@ -51,13 +36,12 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 
     // Respond to song request (like in the popup of the extension)
 
-    if (msg.type === "GET_STATUS") {
+    if (msg.type === "GET_STATUS")
         sendResponse({ song: lastSong });
-    }
 
 });
 
-// Listen to already opened youtube tabs
+// Update already opened youtube tabs
 
 chrome.tabs.query({ url: "*://www.youtube.com/watch*" }, (tabs) => {
     for (const tab of tabs) {
@@ -65,10 +49,25 @@ chrome.tabs.query({ url: "*://www.youtube.com/watch*" }, (tabs) => {
     }
 });
 
-// Listen to new tabs or updates
+// Listen to tab updates
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (tab.url && tab.url.includes("youtube.com/watch") && changeInfo.status === "complete") {
         injectContentScript(tabId);
     }
 });
+
+/**
+ * @description Injects content.js into a tab
+ * @author ItsLeMax
+ * @param { Number|String } tabId Tab id of the browsers tab
+ * @since 1.0.0 
+ */
+function injectContentScript(tabId) {
+
+    chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        files: ["main/content.js"]
+    });
+
+}
