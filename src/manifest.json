@@ -1,0 +1,40 @@
+{
+    "manifest_version": 3,
+    "name": "Chrome YouTube Fetcher",
+    "description": "Sends data of YouTube to localhost:3001",
+    "version": "1.0",
+    "author": {
+        "name": "ItsLeMax"
+    },
+    "icons": {
+        "16": "assets/icon16.png",
+        "32": "assets/icon32.png",
+        "48": "assets/icon48.png",
+        "128": "assets/icon128.png"
+    },
+    "permissions": [
+        "tabs",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://www.youtube.com/*",
+        "http://localhost:3001/*"
+    ],
+    "background": {
+        "service_worker": "main/background.js"
+    },
+    "action": {
+        "default_popup": "web/popup.html",
+        "default_title": "Chrome YouTube Fetcher"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.youtube.com/watch*"
+            ],
+            "js": [
+                "main/content.js"
+            ]
+        }
+    ]
+}

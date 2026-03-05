@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style rel="stylesheet" href="popup.css"></style>
+    <style>
+        :root {
+            --border: 10px;
+        }
+
+        body {
+            width: 300px;
+            height: 150px;
+
+            padding: var(--border);
+            margin: var(--border);
+
+            background-color: rgb(131, 38, 38);
+            border: 3px solid black;
+        }
+
+        h1 {
+            color: rgb(200, 200, 200);
+            font-size: 16px;
+        }
+
+        p {
+            color: white;
+        }
+
+        h1,
+        p {
+            font-family: Arial, sans-serif;
+        }
+
+        img {
+            width: 326px;
+            height: 176px;
+
+            position: absolute;
+            top: var(--border);
+            left: var(--border);
+
+            z-index: -1;
+            filter: brightness(50%);
+        }
+    </style>
+
+    <script type="text/javascript" src="popup.js"></script>
+</head>
+
+<body>
+    <h1>Title:</h1>
+    <p id="song"></p>
+    <hr>
+    <h1>Author:</h1>
+    <p id="author"></p>
+    <img id="thumbnail">
+</body>
+
+</html>
