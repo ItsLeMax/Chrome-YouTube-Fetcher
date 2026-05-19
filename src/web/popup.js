@@ -1,16 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // Port input validation
-
-    const port = document.getElementById("port");
-
-    port.addEventListener("input", () => {
-
-        if (port.value.length > 5)
-            port.value = port.value.slice(0, -1);
-
-    });
-
     // Request song
 
     chrome.runtime.sendMessage({ type: "GET_STATUS" }, (response) => {
